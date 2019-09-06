@@ -13,6 +13,8 @@
 所以返回 [0, 1]
 
 '''
+
+
 class Solution(object):
     def twoSum(self, nums, target):
         """
@@ -31,6 +33,7 @@ class Solution(object):
             if dev in nums_dict and number_dict[dev] != nums_dict[dev]:
                 result = [number_dict[dev], nums_dict[dev]]
                 return result
+
 
 if __name__ == "__main__":
     nums = [2, 7, 11, 15]
