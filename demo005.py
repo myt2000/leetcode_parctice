@@ -11,22 +11,22 @@
 输入: "cbbd"
 输出: "bb"
 '''
-class Solution:
-    def longestPalindrome(self, s: str) -> str:
-        pass
+# class Solution:
+#     def longestPalindrome(self, s: str) -> str:
+#         pass
     
-if __name__ == "__main__":
-    # a = "babad"
-    # a = "cbbd"
-    # a = ""
-    # a = "a"
-    # a = "ac"
-    # a = "babadada"
-    a = "aaabaaaa"
-    # a = "abcdbbfcba"
-    test = Solution()
-    result = test.longestPalindrome(a)
-    print(result)
+# if __name__ == "__main__":
+#     # a = "babad"
+#     # a = "cbbd"
+#     # a = ""
+#     # a = "a"
+#     # a = "ac"
+#     # a = "babadada"
+#     a = "aaabaaaa"
+#     # a = "abcdbbfcba"
+#     test = Solution()
+#     result = test.longestPalindrome(a)
+#     print(result)
 
 # class Solution:
 #     def longestPalindrome(self, s: str) -> str:
@@ -87,3 +87,43 @@ if __name__ == "__main__":
 #             return s
 #         else:
 #             return s
+import logging
+
+
+# 中心扩展法
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if len(s) < 2:
+            return s
+        max_length = 0
+        center = 0
+        for i in range(len(s)):
+            begin = self.center_expand(s, i, i)  # 子串是偶数长度
+            end = self.center_expand(s, i, i+1)  # 子串是奇数长度
+            if max_length < max(begin, end):
+                center = i
+                max_length = max(begin, end)
+        return s[center-(max_length -1)//2:center + max_length//2 +1]
+
+
+    def center_expand(self, s: str, begin: int, end: int) -> int:
+        '''
+        :param s: 字符串
+        :param begin: 字符串左边偏移起始位置
+        :param end: 字符串右边偏移起始位置
+        :return:  计算子字符串长度
+        '''
+        left = begin
+        right = end
+        while(left >=0 and right < len(s) and s[left] == s[right]):
+            left-=1
+            right+=1
+        return right - left -1
+
+
+if __name__ == "__main__":
+    a = Solution()
+    b = a.longestPalindrome("abcdbbfcba")
+    # LOGGIONG_LEVEL = logging.INFO
+    logging.basicConfig(level=logging.INFO)
+    logging.info(b)
