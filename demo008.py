@@ -81,6 +81,8 @@ import logging
 用正则的方式解决
 '''
 import re
+
+
 class Solution:
     def myAtoi(self, str: str) -> int:
         regEx1 = "[\\-|\\+]?\\d+"
