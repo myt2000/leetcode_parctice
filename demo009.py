@@ -20,6 +20,26 @@
 
 '''
 
+# class Solution:
+#     def isPalindrome(self, x: int) -> bool:
+#         string_x = str(x)
+#         string_y = list(string_x)
+#         string_y.reverse()
+#         reverse_string_y = "".join(string_y)
+#         if string_x == reverse_string_y:
+#             return True
+#         return False
+
+
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        pass
+        s = str(x)
+        return s == s[::-1]
+
+
+
+
+if __name__ == "__main__":
+    x = 121
+    a = Solution()
+    print(a.isPalindrome(x))
